@@ -1,6 +1,7 @@
 const fs = require('fs');
 const assert = require('assert');
 
+// Load the depthFirstSearch function from code.js
 eval(fs.readFileSync('code.js') + '');
 
 // Define test cases
@@ -73,7 +74,6 @@ for (const testCase of testCases) {
         console.log(`Result: ${result.length > 0 ? result.join(' -> ') : 'No path found'}`);
         console.log(`Expected: ${expectedResult.length > 0 ? expectedResult.join(' -> ') : 'No path found'}`);
 
-        // Assert that the result matches the expected result
         assert.deepStrictEqual(result, expectedResult, `${name} failed: Result does not match expected.`);
 
         console.log(`${name} passed.\n`);
