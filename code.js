@@ -17,12 +17,15 @@ function depthFirstSearch(graph, startNode, targetNode) {
             return true;
         }
 
-        // Explore unvisited neighbors
-        for (let neighbor of graph[node]) {
-            if (!visited[neighbor]) {
-                // Recursively explore the neighbor
-                if (explore(neighbor, visited, path)) {
-                    return true;  // If a path to the target is found, stop exploring
+        // Check if the node has neighbors to explore
+        if (Array.isArray(graph[node])) {
+            // Explore unvisited neighbors
+            for (let neighbor of graph[node]) {
+                if (!visited[neighbor]) {
+                    // Recursively explore the neighbor
+                    if (explore(neighbor, visited, path)) {
+                        return true;  // If a path to the target is found, stop exploring
+                    }
                 }
             }
         }
@@ -42,5 +45,3 @@ function depthFirstSearch(graph, startNode, targetNode) {
     // Return the path if the target is found; otherwise, return an empty array
     return found ? currentPath : [];
 }
-
-
