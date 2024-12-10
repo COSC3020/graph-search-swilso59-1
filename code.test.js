@@ -1,52 +1,86 @@
-
 const fs = require('fs');
 const assert = require('assert');
 
-eval(fs.readFileSync('code.js') + '');
+eval(fs.readFileSync('a:/Algorithm assignments/graph_search/code.js') + '');
 
-const adjList1 = {
-    'A': ['B', 'C'],
-    'B': ['A', 'D', 'E'],
-    'C': ['A', 'F', 'G'],
-    'D': ['B'],
-    'E': ['B', 'H'],
-    'F': ['C'],
-    'G': ['C'],
-    'H': ['E']
-};
-
-const adjList2 = {
-    'A': ['B', 'C'],
-    'B': ['A', 'D'],
-    'C': ['A', 'F', 'G'],
-    'D': ['B'],
-    'E': ['B', 'H'],
-    'F': ['C'],
-    'G': ['C'],
-    'H': []
-};
-
-const startNode = 'G';
-const targetNode = 'E';
-
-function runTest(adjList, testName) {
-    const path = depthFirstSearch(adjList, startNode, targetNode);
-    console.log(`Test: ${testName}`);
-    // Validate and display the result
-    if (path.length > 0 && path[path.length - 1] === targetNode) {
-        console.log(`Path from ${startNode} to ${targetNode}: ${path.join(' -> ')}`);
-    } else {
-        console.log(`No valid path found from ${startNode} to ${targetNode}`);
+// Define test cases
+const testCases = [
+    {
+        name: 'Empty Graph',
+        graph: {},
+        startNode: 'A',
+        targetNode: 'B',
+        expectedResult: []
+    },
+    {
+        name: 'Graph with No Connections',
+        graph: {
+            'A': [],
+            'B': [],
+            'C': []
+        },
+        startNode: 'A',
+        targetNode: 'B',
+        expectedResult: []
+    },
+    {
+        name: 'Graph with One Path',
+        graph: {
+            'A': ['B'],
+            'B': ['C'],
+            'C': ['D'],
+            'D': []
+        },
+        startNode: 'A',
+        targetNode: 'D',
+        expectedResult: ['A', 'B', 'C', 'D']
+    },
+    {
+        name: 'Graph with No Path',
+        graph: {
+            'A': ['B'],
+            'B': [],
+            'C': ['D'],
+            'D': []
+        },
+        startNode: 'A',
+        targetNode: 'D',
+        expectedResult: []
+    },
+    {
+        name: 'Graph with Complex Paths',
+        graph: {
+            'A': ['B', 'C'],
+            'B': ['D'],
+            'C': ['E'],
+            'D': ['F'],
+            'E': ['F'],
+            'F': []
+        },
+        startNode: 'A',
+        targetNode: 'F',
+        expectedResult: ['A', 'B', 'D', 'F'] 
     }
-    // Verify the result and fail the test if incorrect
-    if (path.length === 0 || path[path.length - 1] !== targetNode) {
-        console.error(`${testName} test has failed: No path found.`);
-        process.exit(1); // Exit with non-zero status code to indicate test failure
+];
+
+// Run test cases
+for (const testCase of testCases) {
+    const { name, graph, startNode, targetNode, expectedResult } = testCase;
+    console.log(`Running test: ${name}`);
+
+    try {
+        const result = depthFirstSearch(graph, startNode, targetNode);
+        console.log(`Result: ${result.length > 0 ? result.join(' -> ') : 'No path found'}`);
+        console.log(`Expected: ${expectedResult.length > 0 ? expectedResult.join(' -> ') : 'No path found'}`);
+
+        // Assert that the result matches the expected result
+        assert.deepStrictEqual(result, expectedResult, `${name} failed: Result does not match expected.`);
+
+        console.log(`${name} passed.\n`);
+    } catch (error) {
+        console.error(`${name} failed with error: ${error.message}`);
+        process.exit(1);
     }
 }
 
-// Run test for adjList
-runTest(adjList1, "adjList1");
-
-// Run test for adjList2
-runTest(adjList2, "adjList2");
+console.log('All tests passed successfully.');
