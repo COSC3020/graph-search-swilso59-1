@@ -1,7 +1,7 @@
 const fs = require('fs');
 const assert = require('assert');
 
-eval(fs.readFileSync('a:/Algorithm assignments/graph_search/code.js') + '');
+eval(fs.readFileSync('code.js') + '');
 
 // Define test cases
 const testCases = [
