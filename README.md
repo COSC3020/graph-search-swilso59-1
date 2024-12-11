@@ -30,7 +30,7 @@ answer, including your reasoning, to this markdown file.
 
 - The time complexity is $\ \Theta(V + E)$.
 
-- The $\ \Theta(V)$ part comes from the explore function were the nodes are marked visted.
+- The $\ \Theta(V)$ part comes from the explore function were the nodes are marked visited.
   In the worst case each node may be visited once.
 
 - The $\ \Theta(E)$ is the part of the explore function that iterates through the neighbors of each node.
