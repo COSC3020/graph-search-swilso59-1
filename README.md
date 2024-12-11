@@ -46,3 +46,8 @@ I used my work from last semester and made some adjustments to the code and test
 
 - https://github.com/COSC3020/graph-search-swilso59
 
+“I certify that I have listed all sources used to complete this exercise, including the use
+of any Large Language Models. All of the work is my own, except where stated
+otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is
+suspected, charges may be filed against me without prior notice.”
+
