@@ -26,6 +26,23 @@ the function and run automatically when you commit through a GitHub action.
 What is the worst-case big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
 
+## Answer 
+
+- The time complexity is $\ O(V + E)$.
+
+- The $\ O(V)$ part comes from the explore function were the nodes are marked visted.
+  In the worst case each node may be visted once.
+
+- The $\ O(E)$ is the part of the explore function that iterates through the neighbors of each node.
+  In the worst case each edge is traversed once.
+
 ## Bonus
 
 Implement and analyze breadth-first search.
+
+## Plagiarism Acknowledgment 
+
+I used my work from last semester and made some adjustments to the code and test code for proper testing of results. 
+
+- https://github.com/COSC3020/graph-search-swilso59
+
